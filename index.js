@@ -3,6 +3,9 @@ import cors from 'cors';
 import 'dotenv/config'
 import { connectDB } from './utils/db.js';
 
+// import all routes
+import userRoutes from './routes/user.routes.js';
+
 const app = express()
 
 app.use(express.json())
@@ -19,7 +22,11 @@ app.use(
 
 const port = process.env.PORT || 3001;
 
+// connect db
 connectDB();
+
+// use all routes
+app.use('/api/v1/users', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
