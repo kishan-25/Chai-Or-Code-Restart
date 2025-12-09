@@ -3,7 +3,10 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     name: String,
     email: String,
-    password: String,
+    password: {
+        type: Object, // kyuki hum hash or salt dono store kar rahe hai
+        required: true
+    },
     role: { // object kyo banaya taki or fields add kar sake
         type: String,
         enum: ["user", "admin"], // role me sirf ye do value aa sakti hai
